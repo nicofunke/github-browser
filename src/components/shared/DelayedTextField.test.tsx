@@ -24,5 +24,5 @@ it("triggers onChange delayed after typing", async () => {
   expect(onChange.mock.calls).toHaveLength(0);
   await new Promise((resolve) => setTimeout(resolve, 500));
   expect(onChange.mock.calls).toHaveLength(1);
-  expect(onChange.mock.calls[0][0]).toBe("last input");
+  expect((onChange.mock.calls[0] as any)[0]).toBe("last input");
 });

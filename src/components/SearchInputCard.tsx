@@ -30,6 +30,7 @@ export default function SearchInputCard({
           <DelayedTextField
             id="issue-search-term"
             label="Search for Issues"
+            name="Search for Issues"
             variant="outlined"
             onChange={onSearchTermChanged}
             sx={{ width: "100%" }}

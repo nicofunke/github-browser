@@ -34,7 +34,7 @@ const getSearchQuery = (searchTerm: string, state?: IssueState) => {
   const sanitizedSearchTerm = searchTerm.replaceAll('"', "");
   return `repo:facebook/react ${
     state ? `is:${state}` : ""
-  } \"${sanitizedSearchTerm}\" in:title,body is:public is:issue`;
+  } "${sanitizedSearchTerm}" in:title,body is:public is:issue`;
 };
 
 /**
@@ -45,6 +45,7 @@ query IssueSearch($searchQuery: String!, $last: Int!, $after: String) {
   search(type: ISSUE, query: $searchQuery, last: $last, after: $after) {
     issueCount
     edges {
+      cursor
       node {
         ... on Issue {
           title
@@ -69,6 +70,7 @@ function mapResultData(data?: IssueSearchQuery): IssueSearchResult {
       createdAt: new Date(node.createdAt as string),
       issueNumber: node.number as number,
       state: node.state as IssueState,
+      cursor: edge?.cursor,
     };
   });
   return {

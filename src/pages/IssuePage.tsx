@@ -15,6 +15,8 @@ import useIssue from "../apollo/useIssue";
 import useIssueComments from "../apollo/useIssueComments";
 import CommentCard from "../components/shared/CommentCard";
 import IssueStateChip from "../components/shared/IssuStateChip";
+import InfiniteScroll from "react-infinite-scroller";
+
 export const issuePageUrl = (issueNumber?: number) =>
   `/issue/${issueNumber || ":issueNumber"}`;
 
@@ -92,16 +94,19 @@ function IssueComments({ issueNumber }: { issueNumber: number }) {
       variables: { after: data.comments[data.comments.length - 1].cursor },
     });
   };
+
   return (
-    <Stack spacing={2}>
-      {data.comments.map((comment) => (
-        <CommentCard key={comment.id} comment={comment} />
-      ))}
-      {hasMore && (
-        <Button variant="contained" onClick={loadMore}>
-          Load More
-        </Button>
-      )}
-    </Stack>
+    <InfiniteScroll
+      pageStart={0}
+      loadMore={loadMore}
+      hasMore={hasMore}
+      loader={<LinearProgress key="loading" />}
+    >
+      <Stack spacing={2}>
+        {data.comments.map((comment) => (
+          <CommentCard key={comment.id} comment={comment} />
+        ))}
+      </Stack>
+    </InfiniteScroll>
   );
 }

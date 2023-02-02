@@ -39,17 +39,15 @@ Run codegen to create types for GraphQL queries
 - Apollo/Graphql
 - Material UI
 - React Markdown
-- React Testing Library
+- React Infinite Scroller
 - Jest
+- React Testing Library
 
 ## Improvement Ideas
 
 - Use Redux to manage search states
 - Implement tests
   - Wrong input
-  - Delayed text field
   - Caching
-- Pagination for issue search
-- Load next comments on scroll instead of using a button
 - Improve overall design
 - Favicon

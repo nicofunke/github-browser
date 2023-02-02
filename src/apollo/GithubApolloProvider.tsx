@@ -20,6 +20,23 @@ const cache = new InMemoryCache({
         },
       },
     },
+    // Pagination strategy for searching issues
+    Query: {
+      fields: {
+        search: {
+          keyArgs: ["type", "query"],
+          merge(existing, incoming) {
+            const existingEdges = existing?.edges || [];
+            const incomingEdges = incoming?.edges || [];
+            return {
+              ...(existing || {}),
+              ...(incoming || {}),
+              edges: [...existingEdges, ...incomingEdges],
+            };
+          },
+        },
+      },
+    },
   },
 });
 

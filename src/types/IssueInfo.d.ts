@@ -7,4 +7,5 @@ export type IssueInfo = {
   title: string;
   author?: Author;
   createdAt: Date;
+  cursor?: string;
 };
