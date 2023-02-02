@@ -49,9 +49,21 @@ export default function SearchResultCard({
   return (
     <Card>
       <CardContent>
+        <Header issueCount={searchResult.issueCount} />
         <IssuesList issues={searchResult.issues} />
       </CardContent>
     </Card>
+  );
+}
+
+function Header({ issueCount }: { issueCount: number }) {
+  const headerText = `${issueCount || "No"} Issue${
+    issueCount === 1 ? "" : "s"
+  } Found`;
+  return (
+    <Typography variant="h5" color="text.secondary">
+      {headerText}
+    </Typography>
   );
 }
 
@@ -60,12 +72,7 @@ export default function SearchResultCard({
  */
 function IssuesList({ issues }: { issues: IssueInfo[] }) {
   const navigate = useNavigate();
-  if (!issues.length)
-    return (
-      <Typography variant="h5" color="lightgray">
-        No Issues found
-      </Typography>
-    );
+  if (!issues.length) return <></>;
   return (
     <List>
       {issues.map(({ issueNumber, title, author, createdAt, state }) => (

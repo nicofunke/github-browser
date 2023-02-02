@@ -30,10 +30,12 @@ export const useIssueSearch = () => {
 /**
  * Helper function to generate the search query for issue search
  */
-const getSearchQuery = (searchTerm: string, state?: IssueState) =>
-  `repo:facebook/react ${
+const getSearchQuery = (searchTerm: string, state?: IssueState) => {
+  const sanitizedSearchTerm = searchTerm.replaceAll('"', "");
+  return `repo:facebook/react ${
     state ? `is:${state}` : ""
-  } ${searchTerm} in:title is:public is:issue`;
+  } \"${sanitizedSearchTerm}\" in:title,body is:public is:issue`;
+};
 
 /**
  * GraphQL query to search for issues

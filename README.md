@@ -2,7 +2,7 @@
 
 ## Setup
 
-The app needs and Github personal access token in order to work properly. You can define one in the `ENV` variable `REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN` (see `.env.example`)
+The app needs a Github personal access token in order to work properly. You can define one in the `ENV` variable `REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN` (see `.env.example`)
 
 ## Available Scripts
 
@@ -40,7 +40,7 @@ Run codegen to create types for GraphQL queries
 - Material UI
 - React Markdown
 
-## Improvement Ides
+## Improvement Ideas
 
 - Use Redux to manage search states
 - Implement tests
