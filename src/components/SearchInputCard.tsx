@@ -1,7 +1,7 @@
 import { Card, CardContent, Chip, Stack } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { IssueState } from "../types/IssueState";
-import DelayedTextField from "./shared/DelayedInput";
+import DelayedTextField from "./shared/DelayedTextField";
 
 /**
  * Card that displays the search field and corresponding filter options

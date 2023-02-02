@@ -39,6 +39,8 @@ Run codegen to create types for GraphQL queries
 - Apollo/Graphql
 - Material UI
 - React Markdown
+- React Testing Library
+- Jest
 
 ## Improvement Ideas
 
