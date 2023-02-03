@@ -7,7 +7,7 @@ import { IssueState } from "../types/IssueState";
 import { gql } from "../__generated__";
 import { IssueSearchQuery } from "../__generated__/graphql";
 
-const MAX_RESULTS = 12;
+export const MAX_ISSUE_SEARCH_RESULTS = 12;
 
 /**
  * Lazy query to search for issues
@@ -18,8 +18,8 @@ export const useIssueSearch = () => {
     (searchTerm: string, state?: IssueState) =>
       executeQuery({
         variables: {
-          searchQuery: getSearchQuery(searchTerm, state),
-          last: MAX_RESULTS,
+          searchQuery: generateSearchQuery(searchTerm, state),
+          last: MAX_ISSUE_SEARCH_RESULTS,
         },
       }),
     [executeQuery]
@@ -30,7 +30,7 @@ export const useIssueSearch = () => {
 /**
  * Helper function to generate the search query for issue search
  */
-const getSearchQuery = (searchTerm: string, state?: IssueState) => {
+export const generateSearchQuery = (searchTerm: string, state?: IssueState) => {
   const sanitizedSearchTerm = searchTerm.replaceAll('"', "");
   return `repo:facebook/react ${
     state ? `is:${state}` : ""
@@ -40,7 +40,7 @@ const getSearchQuery = (searchTerm: string, state?: IssueState) => {
 /**
  * GraphQL query to search for issues
  */
-const SEARCH_ISSUES_BY_TERM = gql(`
+export const SEARCH_ISSUES_BY_TERM = gql(`
 query IssueSearch($searchQuery: String!, $last: Int!, $after: String) {
   search(type: ISSUE, query: $searchQuery, last: $last, after: $after) {
     issueCount

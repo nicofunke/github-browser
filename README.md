@@ -45,9 +45,12 @@ Run codegen to create types for GraphQL queries
 
 ## Improvement Ideas
 
-- Use Redux to manage search states
+- Manage apllication state better
+  - Redux
+  - Or Context
+- Sort results by date
 - Implement tests
-  - Wrong input
-  - Caching
+  - Infinite scroll triggers
+- Improve component and folder structure
 - Improve overall design
 - Favicon

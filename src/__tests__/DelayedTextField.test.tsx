@@ -1,7 +1,7 @@
-import { fireEvent, render } from "@testing-library/react";
-import DelayedTextField from "./DelayedTextField";
+import { fireEvent, render, waitFor } from "@testing-library/react";
+import DelayedTextField from "../components/shared/DelayedTextField";
 
-it("triggers onChange delayed after typing", async () => {
+it("onChange is triggered delayed after typing", async () => {
   // Given: Delayed field
   const onChange = jest.fn(() => {});
   const { getByLabelText } = render(
