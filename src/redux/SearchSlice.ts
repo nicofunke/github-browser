@@ -44,7 +44,7 @@ export const selectSearchQuery = (state: RootState) => {
   const stateFilter = state.search.stateFilter;
   return `repo:facebook/react ${
     stateFilter ? `is:${stateFilter}` : ""
-  } "${sanitizedSearchTerm}" in:title,body is:public is:issue`;
+  } "${sanitizedSearchTerm}" in:title,body is:public is:issue sort:created-desc`;
 };
 
 // Reducer

@@ -46,12 +46,7 @@ Run codegen to create types for GraphQL queries
 
 ## Improvement Ideas
 
-- Manage apllication state better
-  - Redux
-  - Or Context
 - Error boundary
-- Sort results by date
-- check circular imports
 - Implement tests
   - Infinite scroll triggers
 - Improve component and folder structure

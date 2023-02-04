@@ -24,7 +24,7 @@ query LoadIssueComments($issueNumber: Int!, $first: Int!, $after: String) {
     repository(owner:"facebook", name:"react") {
       id
       issue(number:$issueNumber) {
-        comments( after: $after, first: $first) {
+        comments( after: $after, first: $first, orderBy: {field: UPDATED_AT, direction: ASC}) {
           totalCount
           edges {
             cursor
