@@ -37,6 +37,7 @@ Run codegen to create types for GraphQL queries
 - React
 - React Router
 - Apollo/Graphql
+- Redux/React-Redux
 - Material UI
 - React Markdown
 - React Infinite Scroller
@@ -48,7 +49,9 @@ Run codegen to create types for GraphQL queries
 - Manage apllication state better
   - Redux
   - Or Context
+- Error boundary
 - Sort results by date
+- check circular imports
 - Implement tests
   - Infinite scroll triggers
 - Improve component and folder structure

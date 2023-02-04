@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
-import { Author } from "../types/Author";
-import { Issue } from "../types/Issue";
-import { gql } from "../__generated__";
-import { LoadIssueQuery } from "../__generated__/graphql";
+import { Author } from "../../types/Author";
+import { Issue } from "../../types/Issue";
+import { gql } from "../../__generated__";
+import { LoadIssueQuery } from "../../__generated__/graphql";
 
 /**
  * Loads a single issue by number

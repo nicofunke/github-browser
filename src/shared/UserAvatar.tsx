@@ -1,5 +1,5 @@
 import { Avatar } from "@mui/material";
-import { Author } from "../../types/Author";
+import { Author } from "../types/Author";
 
 /**
  * Avatar showing the profile image of an author

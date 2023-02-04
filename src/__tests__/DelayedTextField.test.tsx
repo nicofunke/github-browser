@@ -1,5 +1,5 @@
 import { fireEvent, render, waitFor } from "@testing-library/react";
-import DelayedTextField from "../components/shared/DelayedTextField";
+import DelayedTextField from "../shared/DelayedTextField";
 
 it("onChange is triggered delayed after typing", async () => {
   // Given: Delayed field

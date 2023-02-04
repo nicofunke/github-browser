@@ -1,8 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
-import IssuePage, { issuePageUrl } from "./pages/IssuePage";
+import IssuePage from "./pages/issue/IssuePage";
 import Root from "./pages/Root";
-import SearchPage from "./pages/SearchPage";
+import SearchPage from "./pages/search/SearchPage";
 
 const router = createBrowserRouter([
   {
@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: issuePageUrl(),
+        path: "/issue/:issueNumber",
         element: <IssuePage />,
       },
       {

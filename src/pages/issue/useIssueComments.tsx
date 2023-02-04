@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
-import { Author } from "../types/Author";
-import { IssueComments } from "../types/IssueComment";
-import { gql } from "../__generated__";
-import { LoadIssueCommentsQuery } from "../__generated__/graphql";
+import { Author } from "../../types/Author";
+import { IssueComments } from "../../types/IssueComment";
+import { gql } from "../../__generated__";
+import { LoadIssueCommentsQuery } from "../../__generated__/graphql";
 
 const MAX_COMMENTS = 12;
 

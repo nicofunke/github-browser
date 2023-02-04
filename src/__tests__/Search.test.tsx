@@ -1,25 +1,31 @@
+import { MockedProvider, MockedResponse } from "@apollo/client/testing";
 import {
-  act,
   fireEvent,
   render,
   waitForElementToBeRemoved,
 } from "@testing-library/react";
-import { MockedProvider, MockedResponse } from "@apollo/client/testing";
-import SearchPage from "../pages/SearchPage";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import SearchPage from "../pages/search/SearchPage";
 import {
-  generateSearchQuery,
   MAX_ISSUE_SEARCH_RESULTS,
   SEARCH_ISSUES_BY_TERM,
-} from "../apollo/useIssueSearch";
+} from "../pages/search/useIssueSearch";
+import { selectSearchQuery } from "../redux/SearchSlice";
+import { setupStore } from "../redux/store";
 import { IssueSearchQuery, IssueState } from "../__generated__/graphql";
-import { BrowserRouter } from "react-router-dom";
 
+/**
+ * Apollo mock responses
+ */
 const mocks: MockedResponse[] = [
   {
     request: {
       query: SEARCH_ISSUES_BY_TERM,
       variables: {
-        searchQuery: generateSearchQuery("test-searchTerm1"),
+        searchQuery: selectSearchQuery({
+          search: { searchTerm: "test-searchTerm1" },
+        }),
         last: MAX_ISSUE_SEARCH_RESULTS,
       },
     },
@@ -71,18 +77,27 @@ const mocks: MockedResponse[] = [
   },
 ];
 
+/**
+ * Creates the container for the tests
+ */
+function renderTestSetup() {
+  return render(
+    <Provider store={setupStore()}>
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <SearchPage />
+      </MockedProvider>
+    </Provider>,
+    { wrapper: BrowserRouter }
+  );
+}
+
 jest.mock("react-markdown", async () => (props: any) => {
   return <>{props.children}</>;
 });
 
 it("successfully search for issues", async () => {
   //Given: Search page is active
-  const { getByLabelText, getByText, findByRole } = render(
-    <MockedProvider mocks={mocks} addTypename={false}>
-      <SearchPage />
-    </MockedProvider>,
-    { wrapper: BrowserRouter }
-  );
+  const { getByLabelText, getByText, findByRole } = renderTestSetup();
 
   //When: Searching for a term
   const searchField = getByLabelText("Search for Issues") as HTMLInputElement;
@@ -100,12 +115,8 @@ it("successfully search for issues", async () => {
 
 it("double quotes in search are ignored", async () => {
   //Given: Search page is active
-  const { getByLabelText, getByText, findByRole, queryByRole } = render(
-    <MockedProvider mocks={mocks} addTypename={false}>
-      <SearchPage />
-    </MockedProvider>,
-    { wrapper: BrowserRouter }
-  );
+  const { getByLabelText, getByText, findByRole, queryByRole } =
+    renderTestSetup();
 
   //When: Searching for a term that contains double quotes
   const searchField = getByLabelText("Search for Issues") as HTMLInputElement;
@@ -122,16 +133,12 @@ it("double quotes in search are ignored", async () => {
 
 it("failed queries display an error", async () => {
   // Given: Search page is active
-  const { getByLabelText, getByText, findByRole, queryByRole } = render(
-    <MockedProvider mocks={mocks} addTypename={false}>
-      <SearchPage />
-    </MockedProvider>,
-    { wrapper: BrowserRouter }
-  );
+  const { getByLabelText, getByText, findByRole, queryByRole } =
+    renderTestSetup();
 
   // When: Performing a search that causes an error
   const searchField = getByLabelText("Search for Issues") as HTMLInputElement;
-  fireEvent.change(searchField, { target: { value: 'test-search"Term2' } }); // No mock defined -> error
+  fireEvent.change(searchField, { target: { value: "test-searchTerm2" } }); // No mock defined -> error
 
   // Expect: Error message is displayed
   await findByRole("progressbar");
@@ -143,12 +150,8 @@ it("failed queries display an error", async () => {
 
 it("previous searchs are cached", async () => {
   //Given: Search page is active
-  const { getByLabelText, getByText, findByRole, queryByRole } = render(
-    <MockedProvider mocks={mocks} addTypename={false}>
-      <SearchPage />
-    </MockedProvider>,
-    { wrapper: BrowserRouter }
-  );
+  const { getByLabelText, getByText, findByRole, queryByRole } =
+    renderTestSetup();
 
   //When: Entering the same search term twice
   const searchField = getByLabelText("Search for Issues") as HTMLInputElement;
