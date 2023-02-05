@@ -12,11 +12,11 @@ import Typography from "@mui/material/Typography";
 import { ReactNode } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../redux/reduxHooks";
-import { selectSearchTerm } from "../../redux/SearchSlice";
-import IssueStateChip from "../../shared/IssueStateChip";
-import UserAvatar from "../../shared/UserAvatar";
-import { IssueInfo } from "../../types/IssueInfo";
+import { useAppSelector } from "redux/reduxHooks";
+import { selectSearchTerm } from "redux/SearchSlice";
+import IssueStateChip from "shared/IssueStateChip";
+import UserAvatar from "shared/UserAvatar";
+import { IssueInfo } from "types/IssueInfo";
 import { useIssueSearch } from "./useIssueSearch";
 
 /**

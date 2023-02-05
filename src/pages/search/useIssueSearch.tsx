@@ -1,10 +1,10 @@
 import { useQuery } from "@apollo/client";
-import { selectSearchQuery } from "../../redux/SearchSlice";
-import { useAppSelector } from "../../redux/reduxHooks";
-import { Author } from "../../types/Author";
-import { IssueInfo } from "../../types/IssueInfo";
-import { gql } from "../../__generated__";
-import { IssueSearchQuery, IssueState } from "../../__generated__/graphql";
+import { selectSearchQuery } from "redux/SearchSlice";
+import { useAppSelector } from "redux/reduxHooks";
+import { Author } from "types/Author";
+import { IssueInfo } from "types/IssueInfo";
+import { gql } from "__generated__";
+import { IssueSearchQuery, IssueState } from "__generated__/graphql";
 
 export const MAX_ISSUE_SEARCH_RESULTS = 12;
 

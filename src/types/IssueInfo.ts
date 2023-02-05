@@ -1,4 +1,4 @@
-import { IssueState } from "../__generated__/graphql";
+import { IssueState } from "__generated__/graphql";
 import { Author } from "./Author";
 
 export type IssueInfo = {

@@ -13,8 +13,8 @@ import {
 } from "../pages/search/useIssueSearch";
 import { selectSearchQuery } from "../redux/SearchSlice";
 import { setupStore } from "../redux/store";
-import { IssueStateFilter } from "../types/IssueStateFilter.d";
-import { SearchTarget } from "../types/SearchTarget.d";
+import { IssueStateFilter } from "../types/IssueStateFilter";
+import { SearchTarget } from "../types/SearchTarget";
 import { IssueSearchQuery, IssueState } from "../__generated__/graphql";
 
 /**

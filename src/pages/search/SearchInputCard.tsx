@@ -13,7 +13,7 @@ import {
   Stack,
 } from "@mui/material";
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../redux/reduxHooks";
+import { useAppDispatch, useAppSelector } from "redux/reduxHooks";
 import {
   selectSearchStateFilter,
   selectSearchTarget,
@@ -21,10 +21,10 @@ import {
   updateSearchTarget,
   updateSearchTerm,
   updateStateFilter,
-} from "../../redux/SearchSlice";
-import DelayedTextField from "../../shared/DelayedTextField";
-import { IssueStateFilter } from "../../types/IssueStateFilter.d";
-import { SearchTarget } from "../../types/SearchTarget.d";
+} from "redux/SearchSlice";
+import DelayedTextField from "shared/DelayedTextField";
+import { IssueStateFilter } from "types/IssueStateFilter";
+import { SearchTarget } from "types/SearchTarget";
 
 /**
  * Card that displays all inputs for the issue search

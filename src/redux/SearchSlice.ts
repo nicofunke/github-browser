@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./store";
-import { SearchTarget } from "../types/SearchTarget.d";
-import { IssueStateFilter } from "../types/IssueStateFilter.d";
+import { SearchTarget } from "types/SearchTarget";
+import { IssueStateFilter } from "types/IssueStateFilter";
 
 interface SearchState {
   searchTerm: string;
