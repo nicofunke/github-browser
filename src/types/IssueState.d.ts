@@ -1,1 +1,4 @@
-export type IssueState = "OPEN" | "CLOSED";
+export enum IssueState {
+  open = "OPEN",
+  closed = "CLOSED",
+}

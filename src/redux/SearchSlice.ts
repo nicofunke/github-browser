@@ -1,14 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./store";
-import { IssueState } from "../types/IssueState";
+import { SearchTarget } from "../types/SearchTarget.d";
+import { IssueStateFilter } from "../types/IssueStateFilter.d";
 
 interface SearchState {
   searchTerm: string;
-  stateFilter?: IssueState;
+  stateFilter: IssueStateFilter;
+  searchTarget: SearchTarget;
 }
 
 const initialState: SearchState = {
   searchTerm: "",
+  searchTarget: SearchTarget.both,
+  stateFilter: IssueStateFilter.none,
 };
 
 /**
@@ -21,17 +25,18 @@ export const searchSlice = createSlice({
     updateSearchTerm: (state, action: PayloadAction<string>) => {
       state.searchTerm = action.payload;
     },
-    updateStateFilter: (
-      state,
-      action: PayloadAction<IssueState | undefined>
-    ) => {
+    updateStateFilter: (state, action: PayloadAction<IssueStateFilter>) => {
       state.stateFilter = action.payload;
+    },
+    updateSearchTarget: (state, action: PayloadAction<SearchTarget>) => {
+      state.searchTarget = action.payload;
     },
   },
 });
 
 // Actions
-export const { updateSearchTerm, updateStateFilter } = searchSlice.actions;
+export const { updateSearchTerm, updateStateFilter, updateSearchTarget } =
+  searchSlice.actions;
 
 // Selectors
 export const selectSearchTerm = (state: RootState) => state.search.searchTerm;
@@ -39,12 +44,17 @@ export const selectSearchTerm = (state: RootState) => state.search.searchTerm;
 export const selectSearchStateFilter = (state: RootState) =>
   state.search.stateFilter;
 
+export const selectSearchTarget = (state: RootState) =>
+  state.search.searchTarget;
+
 export const selectSearchQuery = (state: RootState) => {
   const sanitizedSearchTerm = state.search.searchTerm.replaceAll('"', "");
   const stateFilter = state.search.stateFilter;
   return `repo:facebook/react ${
-    stateFilter ? `is:${stateFilter}` : ""
-  } "${sanitizedSearchTerm}" in:title,body is:public is:issue sort:created-desc`;
+    stateFilter !== IssueStateFilter.none ? `is:${stateFilter}` : ""
+  } "${sanitizedSearchTerm}" in:${
+    state.search.searchTarget
+  } is:public is:issue sort:created-desc`;
 };
 
 // Reducer

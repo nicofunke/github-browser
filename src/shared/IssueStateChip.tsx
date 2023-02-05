@@ -1,5 +1,5 @@
 import { Chip } from "@mui/material";
-import { IssueState } from "../types/IssueState";
+import { IssueState } from "../types/IssueState.d";
 
 /**
  * Chip to display the state of an issue

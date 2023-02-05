@@ -1,5 +1,5 @@
 import { Author } from "./Author";
-import { IssueState } from "./IssueState";
+import { IssueState } from "./IssueState.d";
 
 export type IssueInfo = {
   issueNumber: number;
