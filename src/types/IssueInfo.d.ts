@@ -1,5 +1,5 @@
+import { IssueState } from "../__generated__/graphql";
 import { Author } from "./Author";
-import { IssueState } from "./IssueState.d";
 
 export type IssueInfo = {
   issueNumber: number;

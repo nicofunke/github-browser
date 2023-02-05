@@ -17,7 +17,6 @@ import { selectSearchTerm } from "../../redux/SearchSlice";
 import IssueStateChip from "../../shared/IssueStateChip";
 import UserAvatar from "../../shared/UserAvatar";
 import { IssueInfo } from "../../types/IssueInfo";
-import { IssueSearchResult } from "../../types/IssueSearchResult";
 import { useIssueSearch } from "./useIssueSearch";
 
 /**
@@ -46,7 +45,7 @@ export default function SearchResultCard() {
 function SearchHandler({
   children,
 }: {
-  children: (issues: IssueSearchResult) => ReactNode;
+  children: (result: { issues: IssueInfo[]; issueCount: number }) => ReactNode;
 }) {
   const { loading, error, data: searchResult, fetchMore } = useIssueSearch();
   const hasMore = searchResult.issues.length < searchResult.issueCount;

@@ -13,6 +13,8 @@ import {
 } from "../pages/search/useIssueSearch";
 import { selectSearchQuery } from "../redux/SearchSlice";
 import { setupStore } from "../redux/store";
+import { IssueStateFilter } from "../types/IssueStateFilter.d";
+import { SearchTarget } from "../types/SearchTarget.d";
 import { IssueSearchQuery, IssueState } from "../__generated__/graphql";
 
 /**
@@ -24,7 +26,11 @@ const mocks: MockedResponse[] = [
       query: SEARCH_ISSUES_BY_TERM,
       variables: {
         searchQuery: selectSearchQuery({
-          search: { searchTerm: "test-searchTerm1" },
+          search: {
+            searchTerm: "test-searchTerm1",
+            searchTarget: SearchTarget.both,
+            stateFilter: IssueStateFilter.none,
+          },
         }),
         last: MAX_ISSUE_SEARCH_RESULTS,
       },

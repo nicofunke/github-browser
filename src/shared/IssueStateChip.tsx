@@ -1,5 +1,5 @@
 import { Chip } from "@mui/material";
-import { IssueState } from "../types/IssueState.d";
+import { IssueState } from "../__generated__/graphql";
 
 /**
  * Chip to display the state of an issue

@@ -3,10 +3,8 @@ import { selectSearchQuery } from "../../redux/SearchSlice";
 import { useAppSelector } from "../../redux/reduxHooks";
 import { Author } from "../../types/Author";
 import { IssueInfo } from "../../types/IssueInfo";
-import { IssueSearchResult } from "../../types/IssueSearchResult";
-import { IssueState } from "../../types/IssueState";
 import { gql } from "../../__generated__";
-import { IssueSearchQuery } from "../../__generated__/graphql";
+import { IssueSearchQuery, IssueState } from "../../__generated__/graphql";
 
 export const MAX_ISSUE_SEARCH_RESULTS = 12;
 
@@ -47,7 +45,7 @@ query IssueSearch($searchQuery: String!, $last: Int!, $after: String) {
 }
   `);
 
-function mapResultData(data?: IssueSearchQuery): IssueSearchResult {
+function mapResultData(data?: IssueSearchQuery) {
   const edges = data?.search.edges || [];
   const issues: IssueInfo[] = edges.map((edge) => {
     const node = edge!.node as any;
