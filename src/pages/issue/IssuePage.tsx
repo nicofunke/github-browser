@@ -1,7 +1,7 @@
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { Stack, Typography } from "@mui/material";
 import { Container } from "@mui/system";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import IssueComments from "./IssueComments";
 import IssueMainInformation from "./IssueMainInformation";
 
@@ -10,7 +10,7 @@ import IssueMainInformation from "./IssueMainInformation";
  */
 function useIssueNumberParam() {
   let { issueNumber } = useParams();
-  const parsed = parseInt(issueNumber || "");
+  const parsed = +(issueNumber || "");
   return parsed;
 }
 
@@ -19,6 +19,10 @@ function useIssueNumberParam() {
  */
 export default function IssuePage() {
   const issueNumber = useIssueNumberParam();
+  if (isNaN(issueNumber)) {
+    return <Navigate replace to="/" />;
+  }
+  console.log(issueNumber);
   return (
     <Container maxWidth="md">
       <BackToSearchButton />

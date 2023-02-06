@@ -1,13 +1,8 @@
-import {
-  Alert,
-  Card,
-  CardContent,
-  LinearProgress,
-  Typography,
-} from "@mui/material";
+import { Card, CardContent, LinearProgress, Typography } from "@mui/material";
 import ReactMarkdown from "react-markdown";
-import useIssue from "./useIssue";
+import { Navigate } from "react-router-dom";
 import IssueStateChip from "../../shared/IssueStateChip";
+import useIssue from "./useIssue";
 
 /**
  * Loads and displays the issues main information
@@ -19,12 +14,8 @@ export default function IssueMainInformation({
 }) {
   const { loading, error, data: issue } = useIssue(issueNumber);
   if (loading) return <LinearProgress />;
-  if (error || !issue)
-    return (
-      <Alert severity="error">
-        Something went wrong. Please try again later
-      </Alert>
-    );
+  if (error || !issue) return <Navigate replace to="/" />;
+
   return (
     <Card sx={{ marginBottom: "2rem" }}>
       <CardContent>

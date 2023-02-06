@@ -48,6 +48,7 @@ Run codegen to create types for GraphQL queries
 
 - Error boundary
 - Implement tests
+  - wrong URL params
   - Infinite scroll triggers
 - Improve component and folder structure
 - Improve overall design
